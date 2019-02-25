@@ -1,6 +1,7 @@
+const { people } = require('../database/db.js');
 const resolvers = {
-  Query: {
-    name: () => 'jun'
-  }
+    Query: {
+        people: () => people
+    }
 };
 module.exports = resolvers;
