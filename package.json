@@ -5,5 +5,12 @@
   "main": "index.js",
   "repository": "https://github.com/wnsrl56/movieql.git",
   "author": "wnsrl56@gmail.com",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "graphql-yoga": "^1.17.4"
+  },
+  "scripts": {
+    "start": "babel-watch index.js"
+  },
+  "devDependencies": {}
 }
