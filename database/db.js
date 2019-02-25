@@ -1,4 +1,4 @@
-const { filter } = require('../lib/fx');
+const { filter, take } = require('../lib/fx');
 const people = [
     {
         name: 'awrrt111',
@@ -50,7 +50,7 @@ const people = [
     }
 ];
 
-const getById = (iter, id) => filter(iter, v => v.id === id);
+const getById = (iter, id) => take(1, filter(iter, v => v.id === id));
 const db = { people, getById };
 
 module.exports = db;

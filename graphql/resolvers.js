@@ -1,7 +1,10 @@
-const { people } = require('../database/db.js');
+const { people, getById } = require('../database/db.js');
 const resolvers = {
     Query: {
-        people: () => people
+        people: () => people,
+        person: (_, { id }) => {
+            return getById(people, id);
+        }
     }
 };
 module.exports = resolvers;
