@@ -71,6 +71,14 @@ describe('check entry function', () => {
 
 describe('check curry function', () => {
     describe('should be run correcly by calling', () => {
-        test('should return cached function', () => {});
+        test('should return cached function', () => {
+            const list = [1, 2, 3, 4, 5];
+            expect(curry(take)(1, list)).toEqual(take(1, list));
+
+            const curriedTake = curry(take);
+            const curriedTakeAll = curriedTake(Infinity);
+            expect(curriedTake(1, list)).toEqual(take(1, list));
+            expect(curriedTakeAll(list)).toEqual(take(10, list));
+        });
     });
 });
