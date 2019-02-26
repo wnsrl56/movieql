@@ -1,9 +1,9 @@
-const { people, getById } = require('../database/db.js');
+const { getMovies, getById } = require('../database/db.js');
 const resolvers = {
     Query: {
-        people: () => people,
-        person: (_, { id }) => {
-            return getById(people, id);
+        movies: () => getMovies(),
+        movie: (_, { id }) => {
+            return getById(getMovies(), id);
         }
     }
 };
