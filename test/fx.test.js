@@ -1,4 +1,4 @@
-const { filter, take, entry, reduce, curry } = require('../lib/fx');
+const { filter, take, entry, reduce, curry, go } = require('../lib/fx');
 describe('should be including filter function', () => {
     test('variable is not empty', () => {
         expect(typeof filter).toBe('function');
@@ -79,6 +79,18 @@ describe('check curry function', () => {
             const curriedTakeAll = curriedTake(Infinity);
             expect(curriedTake(1, list)).toEqual(take(1, list));
             expect(curriedTakeAll(list)).toEqual(take(10, list));
+        });
+    });
+});
+
+describe('check go function', () => {
+    describe('should run correcly by calling', () => {
+        test('should return cached function', () => {
+            const list = [1, 2, 3, 4, 5];
+            const curriedTake = curry(take);
+            const curriedTakeAll = curriedTake(Infinity);
+
+            expect(go([1, 2, 3], curriedTakeAll)).toEqual([1, 2, 3]);
         });
     });
 });
