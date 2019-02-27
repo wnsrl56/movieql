@@ -1,4 +1,14 @@
-const { filter, take, entry, reduce, curry, go } = require('../lib/fx');
+const {
+    map,
+    filter,
+    take,
+    entry,
+    reduce,
+    curry,
+    go,
+    createIterable
+} = require('../lib/fx');
+
 describe('should be including filter function', () => {
     test('variable is not empty', () => {
         expect(typeof filter).toBe('function');
@@ -6,6 +16,8 @@ describe('should be including filter function', () => {
         expect(typeof entry).toBe('function');
         expect(typeof reduce).toBe('function');
         expect(typeof curry).toBe('function');
+        expect(typeof map).toBe('function');
+        expect(typeof createIterable).toBe('function');
     });
 });
 
@@ -85,12 +97,37 @@ describe('check curry function', () => {
 
 describe('check go function', () => {
     describe('should run correcly by calling', () => {
-        test('should return cached function', () => {
+        test('should run functions immediately', () => {
             const list = [1, 2, 3, 4, 5];
             const curriedTake = curry(take);
             const curriedTakeAll = curriedTake(Infinity);
-
             expect(go([1, 2, 3], curriedTakeAll)).toEqual([1, 2, 3]);
+        });
+    });
+});
+
+describe('check map function', () => {
+    describe('should run correcly by calling', () => {
+        test('should return array', () => {
+            expect(map(v => v, [10, 20, 30])).toEqual([10, 20, 30]);
+            expect(map([10, 20, 30])).toEqual([]);
+            expect(map(v => v)).toEqual([]);
+        });
+
+        test('should input iterable items', () => {
+            expect(map(v => v, { 1: 1, 2: 2, 3: [1, 2, 3, 4] })).toEqual([]);
+            expect(
+                map(v => v, createIterable({ a: 1, b: 2, c: [1, 2, 3, 4] }))
+            ).toEqual([1, 2, [1, 2, 3, 4]]);
+
+            expect(map(v => v, [1, 2, 3, 4, 5])).toEqual([1, 2, 3, 4, 5]);
+        });
+
+        test('should return array containing evaluated items', () => {
+            expect(map(v => v + 10, [10, 20, 30])).toEqual([20, 30, 40]);
+            expect(map(v => `${v} is not good`, ['test'])).toEqual([
+                `test is not good`
+            ]);
         });
     });
 });
