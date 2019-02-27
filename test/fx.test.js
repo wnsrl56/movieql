@@ -39,11 +39,11 @@ describe('check filter function', () => {
 
         test('should return empty array when non-iterable object in,', () => {
             const obj = {};
-            expect(filter(obj, reflectSelf)).toEqual([]);
+            expect(filter(reflectSelf, obj)).toEqual([]);
         });
         test('should return array, when iterable object in', () => {
-            const array = [1, 2, 3, 4, 5];
-            expect(filter(array, reflectSelf)).toEqual(array);
+            const arr = [1, 2, 3, 4, 5];
+            expect(filter(reflectSelf, arr)).toEqual(arr);
         });
     });
 });
