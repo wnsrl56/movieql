@@ -3,7 +3,8 @@ const resolvers = {
     Query: {
         movies: () => getMovies(),
         movie: (_, { id }) => {
-            return getById(getMovies(), id);
+            const getMovieById = getById(getMovies());
+            return getMovieById(1);
         }
     }
 };

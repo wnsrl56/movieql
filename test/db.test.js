@@ -1,4 +1,4 @@
-const { getById, getMovies } = require('../database/db');
+const { getById, getMovies, find } = require('../database/db');
 
 describe('should be including function', () => {
     test('variable is not empty', () => {
@@ -13,7 +13,10 @@ describe('should be run corretly', () => {
     test('should get movie list from getMovies function', () => {
         expect(this.list instanceof Array).toBe(true);
     });
+    describe('shuld find values suing find function', () => {
+        expect(getById(8462).title).toBe('Avengers: Infinity War');
+    });
     test('should be return empty array when it can not find value', () => {
-        expect(getById(this.list, 1)).toEqual([]);
+        expect(getById(1)).toEqual([]);
     });
 });
