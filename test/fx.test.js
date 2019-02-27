@@ -131,3 +131,16 @@ describe('check map function', () => {
         });
     });
 });
+
+describe('check createIterable function', () => {
+    describe('should run correcly by calling', () => {
+        test('should can do iterable value', () => {
+            const iterableList = createIterable({
+                a: 1,
+                b: 2,
+                c: [1, 2, 3, 4]
+            });
+            expect([...iterableList]).toEqual([1, 2, [1, 2, 3, 4]]);
+        });
+    });
+});
