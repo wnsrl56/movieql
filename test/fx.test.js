@@ -140,6 +140,7 @@ describe('check createIterable function', () => {
                 b: 2,
                 c: [1, 2, 3, 4]
             });
+            expect(iterableList.length).toEqual(3);
             expect([...iterableList]).toEqual([1, 2, [1, 2, 3, 4]]);
         });
     });
