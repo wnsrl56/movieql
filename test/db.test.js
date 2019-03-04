@@ -1,4 +1,4 @@
-const { getById, getMovies, find } = require('../database/db');
+const { getById, getMovies, deleteMovieById, find } = require('../database/db');
 
 describe('should be including function', () => {
     test('variable is not empty', () => {
@@ -17,6 +17,17 @@ describe('should be run corretly', () => {
         expect(getById(8462).title).toBe('Avengers: Infinity War');
     });
     test('should be return empty array when it can not find value', () => {
+        expect(getById(1)).toEqual([]);
+    });
+});
+
+describe('should check crud logic', () => {
+    test('should remove movie by id with deleteMovieById function', () => {
+        expect(deleteMovieById(8462)).toBe(true);
+        expect(getById(8462)).toEqual([]);
+    });
+    test('should return false, if the movie object can not remove', () => {
+        expect(deleteMovieById(1)).toBe(false);
         expect(getById(1)).toEqual([]);
     });
 });
